@@ -1,32 +1,6 @@
-"""
-Command-line interface for precommit-hooks.
-
-This module provides the CLI functionality using Click.
-"""
-
-import subprocess
-
 import click
 
-# if $FIX_MODE; then
-#   echo "Fixing formatting..."
-#   poetry run black ./
-#   poetry run isort ./
-#   poetry run ruff check --fix
-# else
-#   echo "Checking formatting..."
-#   black --check .
-#   isort --check-only .
-#   ruff check .
-# fi
-#
-
-
-def run_command(cmd, *options):
-    click.echo(f"Running {cmd} ")
-    cleaned_options = list(filter(lambda x: x != "", options))
-    # click.echo(["poetry", "run", cmd, *options])
-    subprocess.run(["poetry", "run", cmd, *cleaned_options])
+from precommit_hooks.utils import run_command
 
 
 @click.group()
