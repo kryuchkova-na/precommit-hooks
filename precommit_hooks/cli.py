@@ -5,6 +5,11 @@ This module provides the CLI functionality using Click.
 """
 
 import click
+import subprocess
+
+
+def run_command(cmd, *options):
+    subprocess.run(["poetry", "run", cmd, *options])
 
 
 @click.group()
@@ -15,11 +20,11 @@ def cli():
 
 
 @cli.command()
-@click.option('--fix', 'fix')
-def check_codestyle(fix):
-    """Run code formatters (black, isort)."""
+@click.option("--fix", "fix")
+@click.argument("path", default=".")
+def codestyle(fix: bool, path: str):
     click.echo("Running code formatters...")
-    # Implementation will go here
+    run_command("black", path)
 
 
 if __name__ == "__main__":
