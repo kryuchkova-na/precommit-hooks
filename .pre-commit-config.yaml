@@ -1,0 +1,26 @@
+repos:
+  - repo: local
+    hooks:
+      - id: email
+        name: email
+#        entry: python -m precommit_hooks.cli check-email
+#        entry: precommit-hooks check-email
+        entry: poetry run precommit-hooks check-email
+        language: python
+        types: [python]
+        stages: [ manual ]
+
+      - id: codestyle
+        name: codestyle
+        entry: poetry run precommit-hooks check-codestyle
+        language: system
+        types: [python]
+        args: []
+
+      - id: codestyle-fix
+        name: codestyle-fix
+        entry: poetry run precommit-hooks check-codestyle
+        language: python
+        types: [python]
+        args: [--fix]
+        stages: [manual]

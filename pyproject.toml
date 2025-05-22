@@ -6,7 +6,7 @@ authors = [
     {name = "Nataliya Kryuchkova",email = "kryuchkova.na@yandex.ru"}
 ]
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.11"
 dependencies = [
     "black (>=25.1.0,<26.0.0)",
     "isort (>=6.0.1,<7.0.0)",
@@ -22,5 +22,10 @@ Repository = "https://github.com/nataliya/precommit-hooks"
 
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+
+[tool.setuptools]
+packages = ["precommit_hooks"]
+package-dir = {"" = "src"}
