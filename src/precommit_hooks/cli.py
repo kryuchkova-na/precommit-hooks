@@ -16,16 +16,17 @@ def cli():
 
 @cli.command()
 @click.option("--fix/--no-fix", "fix")
-@click.argument("path", default=".")
-def check_codestyle(fix: bool, path: str):
+@click.argument("paths", nargs=-1)
+def check_codestyle(fix: bool, paths: tuple[str]):
     click.echo("Running code formatters...")
-    run_command("black", path, "" if fix else "--check")
-    run_command("isort", path, "" if fix else "--check-only")
-    run_command("ruff", "check", path, "--fix" if fix else "")
+    run_command("black", *paths, "" if fix else "--check")
+    run_command("isort", *paths, "" if fix else "--check-only")
+    run_command("ruff", "check", *paths, "--fix" if fix else "")
 
 
 @cli.command(name="check-email")
-def check_email_cmd():
+@click.argument("paths", nargs=-1)
+def check_email_cmd(paths):
     """Check if the git committer email is valid."""
     click.echo("Checking if git committer email is valid.")
     email_valid, msg = check_email()
