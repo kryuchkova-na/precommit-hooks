@@ -15,16 +15,10 @@ def cli():
 
 
 @cli.command()
-def format():
+@click.option('--fix', 'fix')
+def check_codestyle(fix):
     """Run code formatters (black, isort)."""
     click.echo("Running code formatters...")
-    # Implementation will go here
-
-
-@cli.command()
-def lint():
-    """Run code linters (ruff)."""
-    click.echo("Running code linters...")
     # Implementation will go here
 
 
