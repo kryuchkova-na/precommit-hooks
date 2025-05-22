@@ -19,12 +19,14 @@ precommit-hooks = "precommit_hooks.cli:cli"
 
 [project.urls]
 Repository = "https://github.com/nataliya/precommit-hooks"
-
+#
+#[build-system]
+#requires = ["setuptools", "wheel"]
+#build-backend = "setuptools.build_meta"
 
 [build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
-
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
 
 [tool.setuptools]
 packages = ["precommit_hooks"]

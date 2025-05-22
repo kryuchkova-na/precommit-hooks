@@ -15,7 +15,7 @@ def test_check_email_command():
     runner = CliRunner()
 
     # Mock the git config command to return a valid email
-    with patch('subprocess.check_output', return_value=b'test@ulta.team\n'):
+    with patch("subprocess.check_output", return_value=b"test@ulta.team\n"):
         result = runner.invoke(cli, ["check-email"])
         print(f"Exit code: {result.exit_code}")
         print(f"Output: {result.output}")
