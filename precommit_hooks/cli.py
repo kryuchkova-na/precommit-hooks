@@ -1,3 +1,4 @@
+import subprocess
 import sys
 
 import click
@@ -39,12 +40,23 @@ def check_email_cmd(allowed_domain):
 @cli.command(name="check-branch")
 @click.option("--allow-main/--no-allow-main", "allow_main")
 def check_branch_cmd(allow_main):
+    "Check if the current branch name is allowed"
     branch_valid, msg = check_branch(allow_main=allow_main)
     click.echo(
         click.style(msg, fg="green" if branch_valid else "red"), err=not branch_valid
     )
     if not branch_valid:
         sys.exit(1)
+
+
+@cli.command(name="run-tests")
+@click.argument("test_command", nargs=-1)
+def run_tests_cmd(test_command):
+    """Run tests as a pre-commit hook, optionally with a custom command."""
+    cmd = list(test_command) or ["poetry", "run", "pytest"]
+    click.secho(f"Running tests: {' '.join(cmd)}", fg="cyan", bold=True)
+    result = subprocess.run(cmd)
+    sys.exit(result.returncode)
 
 
 if __name__ == "__main__":

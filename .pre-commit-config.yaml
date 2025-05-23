@@ -30,3 +30,11 @@ repos:
         types: [python]
         args: [--fix]
         stages: [ manual ]
+
+      - id: tests
+        name: tests
+        entry: poetry run precommit-hooks run-tests
+        language: python
+        types: [python]
+        pass_filenames: false
+        args: ["poetry", "run", "pytest"]
