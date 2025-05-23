@@ -1,0 +1,20 @@
+- id: email
+  name: email
+  entry: poetry run precommit-hooks check-email
+  language: python
+  types: [python]
+  pass_filenames: false
+
+- id: codestyle
+  name: codestyle
+  entry: poetry run precommit-hooks check-codestyle
+  language: python
+  types: [python]
+
+- id: codestyle-fix
+  name: codestyle-fix
+  entry: poetry run precommit-hooks check-codestyle
+  language: python
+  types: [python]
+  args: [--fix]
+  stages: [ manual ]
