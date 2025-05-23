@@ -7,18 +7,19 @@ repos:
         language: python
         types: [python]
         stages: [ manual ]
+        pass_filenames: false
 
       - id: codestyle
         name: codestyle
         entry: poetry run precommit-hooks check-codestyle
-        language: system
+        language: python
         types: [python]
         stages: [ manual ]
 
       - id: codestyle-fix
         name: codestyle-fix
         entry: poetry run precommit-hooks check-codestyle
-        language: system
+        language: python
         types: [python]
         args: [--fix]
         stages: [manual]
