@@ -5,3 +5,4 @@ A = 1000
 
 def pofop():
     os.environ.get("TEST")
+    os.environ.get("TEST")

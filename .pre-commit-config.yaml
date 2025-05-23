@@ -6,7 +6,6 @@ repos:
         entry: poetry run precommit-hooks check-email
         language: python
         types: [python]
-        stages: [ manual ]
         pass_filenames: false
 
       - id: codestyle
@@ -14,7 +13,6 @@ repos:
         entry: poetry run precommit-hooks check-codestyle
         language: python
         types: [python]
-        stages: [ manual ]
 
       - id: codestyle-fix
         name: codestyle-fix
@@ -22,4 +20,4 @@ repos:
         language: python
         types: [python]
         args: [--fix]
-        stages: [manual]
+        stages: [ manual ]
