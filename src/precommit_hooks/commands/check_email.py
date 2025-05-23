@@ -1,6 +1,6 @@
 import subprocess
 
-ALLOWED_EMAIL_DOMAIN = "ulta.team"
+from precommit_hooks.config import ALLOWED_EMAIL_DOMAIN
 
 
 def get_git_config_value(key: str):

@@ -24,19 +24,17 @@ def cli():
 @click.argument("paths", nargs=-1)
 def check_codestyle(fix: bool, paths: tuple[str]):
     click.echo("Running code formatters...")
-    click.echo(f"Paths passed: {paths}")
     result = run_command("black", *paths, "" if fix else "--check")
     exit_code = result.returncode
+    click.echo(result)
     # exit_code |= run_command("isort", *paths, "" if fix else "--check-only")
     # exit_code |= run_command("ruff", "check", *paths, "--fix" if fix else "")
 
-    if exit_code == 1:
-        sys.exit(1)
+    sys.exit(exit_code)
 
 
 @cli.command(name="check-email")
-@click.argument("paths", nargs=-1)
-def check_email_cmd(paths):
+def check_email_cmd():
     """Check if the git committer email is valid."""
     click.echo("Checking if git committer email is valid.")
     email_valid, msg = check_email()
