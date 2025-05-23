@@ -52,7 +52,7 @@ def check_branch_cmd(allow_main):
 @cli.command(name="run-tests")
 @click.argument("test_command", nargs=-1)
 def run_tests_cmd(test_command):
-    """Run tests as a pre-commit hook, optionally with a custom command."""
+    """Run tests, optionally with a custom command."""
     cmd = list(test_command) or ["poetry", "run", "pytest"]
     click.secho(f"Running tests: {' '.join(cmd)}", fg="cyan", bold=True)
     result = subprocess.run(cmd)
