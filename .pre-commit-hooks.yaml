@@ -4,7 +4,7 @@
   language: python
   types: [python]
   pass_filenames: false
-  args: ["--allowed-domain", "yandex.ru"]
+  args: ["--allowed-domain", "ulta.team"]
 
 - id: codestyle
   name: codestyle
@@ -19,3 +19,10 @@
   types: [python]
   args: [--fix]
   stages: [ manual ]
+
+- id: branch
+  name: branch
+  entry: poetry run precommit-hooks check-branch
+  language: python
+  types: [python]
+  pass_filenames: false
