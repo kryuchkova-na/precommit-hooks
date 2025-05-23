@@ -4,6 +4,7 @@
   language: python
   types: [python]
   pass_filenames: false
+  args: ["--allowed-domain", "yandex.ru"]
 
 - id: codestyle
   name: codestyle

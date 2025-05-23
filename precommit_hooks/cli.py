@@ -23,10 +23,11 @@ def check_codestyle(fix: bool, paths: tuple[str]):
 
 
 @cli.command(name="check-email")
-def check_email_cmd():
+@click.option("--allowed-domain", "-d", "allowed_domain")
+def check_email_cmd(allowed_domain):
     """Check if the git committer email is valid."""
     click.echo("Checking if git committer email is valid.")
-    email_valid, msg = check_email()
+    email_valid, msg = check_email(allowed_domain=allowed_domain)
     click.echo(
         click.style(msg, fg="green" if email_valid else "red"), err=not email_valid
     )

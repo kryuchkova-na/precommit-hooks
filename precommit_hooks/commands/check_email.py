@@ -1,7 +1,5 @@
 import subprocess
 
-from ..config import ALLOWED_EMAIL_DOMAIN
-
 
 def get_git_config_value(key: str):
     try:
@@ -10,13 +8,13 @@ def get_git_config_value(key: str):
         return None
 
 
-def check_email() -> (bool, str):
+def check_email(*, allowed_domain: str) -> (bool, str):
     email = get_git_config_value("user.email")
     if not email:
         return False, "No committer email set (git config user.email)"
-    if not email.endswith(f"@{ALLOWED_EMAIL_DOMAIN}"):
+    if not email.endswith(f"@{allowed_domain}"):
         return (
             False,
-            f"Invalid committer email: {email} (must end with @{ALLOWED_EMAIL_DOMAIN})",
+            f"Invalid committer email: {email} (must end with @{allowed_domain})",
         )
     return True, f"Email OK: {email}"

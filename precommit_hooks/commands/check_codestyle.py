@@ -5,7 +5,7 @@ import click
 
 def run_command(cmd, *options):
     """Run a command with the given options."""
-    click.echo("==========")
+    click.echo("\n==========")
     click.secho(f"Running {cmd}", fg="cyan", bold=True)
     cleaned_options = list(filter(lambda x: x != "", options))
     result = subprocess.run([cmd, *cleaned_options])
