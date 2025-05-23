@@ -6,7 +6,6 @@ Test script for the check_email command.
 from unittest.mock import patch
 
 from click.testing import CliRunner
-
 from src.precommit_hooks import cli
 
 

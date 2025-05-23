@@ -13,21 +13,16 @@ dependencies = [
     "ruff (>=0.11.10,<0.12.0)",
     "click (>=8.2.1,<9.0.0)"
 ]
+packages = [
+    {include = "precommit_hooks"}
+]
 
 [project.scripts]
 precommit-hooks = "precommit_hooks.cli:cli"
 
 [project.urls]
 Repository = "https://github.com/nataliya/precommit-hooks"
-#
-#[build-system]
-#requires = ["setuptools", "wheel"]
-#build-backend = "setuptools.build_meta"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
-
-[tool.setuptools]
-packages = ["precommit_hooks"]
-package-dir = {"" = "src"}

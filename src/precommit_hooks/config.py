@@ -1,1 +1,0 @@
-ALLOWED_EMAIL_DOMAIN = "yandex.ru"

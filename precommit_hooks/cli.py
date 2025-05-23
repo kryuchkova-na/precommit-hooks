@@ -1,16 +1,9 @@
 import sys
-import subprocess
 
 import click
 
-from precommit_hooks.commands.check_email import check_email
-
-
-def run_command(cmd, *options):
-    click.echo(f"Running {cmd}")
-    cleaned_options = list(filter(lambda x: x != "", options))
-    result = subprocess.run(["poetry", "run", cmd, *cleaned_options])
-    return result.returncode
+from .commands.check_codestyle import check_codestyle as run_codestyle_check
+from .commands.check_email import check_email
 
 
 @click.group()
@@ -24,11 +17,8 @@ def cli():
 @click.option("--fix/--no-fix", "fix")
 @click.argument("paths", nargs=-1)
 def check_codestyle(fix: bool, paths: tuple[str]):
-    click.echo("Running code formatters...")
-    exit_code = run_command("black", *paths, "" if fix else "--check")
-    exit_code |= run_command("isort", *paths, "" if fix else "--check-only")
-    exit_code |= run_command("ruff", "check", *paths, "--fix" if fix else "")
-
+    """Check code style using black, isort, and ruff."""
+    exit_code = run_codestyle_check(fix, paths)
     sys.exit(exit_code)
 
 

@@ -4,7 +4,6 @@ Test script to list all available commands in the CLI.
 """
 
 from click.testing import CliRunner
-
 from src.precommit_hooks import cli
 
 
