@@ -4,7 +4,8 @@ Test script to list all available commands in the CLI.
 """
 
 from click.testing import CliRunner
-from src.precommit_hooks import cli
+
+from precommit_hooks.cli import cli
 
 
 def test_cli_commands():
@@ -16,7 +17,3 @@ def test_cli_commands():
 
     # Check if the check_email command is listed
     assert "check-email" in result.output or "check_email" in result.output
-
-
-if __name__ == "__main__":
-    test_cli_commands()

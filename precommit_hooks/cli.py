@@ -7,7 +7,7 @@ from precommit_hooks.commands.check_codestyle import check_codestyle
 from precommit_hooks.commands.check_email import check_email
 
 
-@click.group()
+@click.group(name="precommit-hooks")
 @click.version_option()
 def cli():
     """precommit-hooks: A collection of pre-commit hooks for code quality."""

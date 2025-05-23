@@ -6,7 +6,8 @@ Test script for the precommit-hooks CLI.
 from unittest.mock import patch
 
 from click.testing import CliRunner
-from src.precommit_hooks import cli
+
+from precommit_hooks.cli import cli
 
 
 class MockCompletedProcess:
@@ -48,7 +49,3 @@ def test_codestyle_command():
         assert "Running black" in result.output
         assert "Running isort" in result.output
         assert "Running ruff" in result.output
-
-
-if __name__ == "__main__":
-    test_codestyle_command()
