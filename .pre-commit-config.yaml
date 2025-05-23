@@ -9,6 +9,14 @@ repos:
         pass_filenames: false
         args: ["--allowed-domain", "yandex.ru"]
 
+      - id: branch
+        name: branch
+        entry: poetry run precommit-hooks check-branch
+        language: python
+        types: [python]
+        pass_filenames: false
+        args: ["--allow-main"]
+
       - id: codestyle
         name: codestyle
         entry: poetry run precommit-hooks check-codestyle
