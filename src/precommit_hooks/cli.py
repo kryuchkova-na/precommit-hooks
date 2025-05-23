@@ -9,7 +9,8 @@ from precommit_hooks.commands.check_email import check_email
 def run_command(cmd, *options):
     click.echo(f"Running {cmd}")
     cleaned_options = list(filter(lambda x: x != "", options))
-    return subprocess.run(["poetry", "run", cmd, *cleaned_options])
+    result = subprocess.run(["poetry", "run", cmd, *cleaned_options])
+    return result.returncode
 
 
 @click.group()
@@ -24,11 +25,9 @@ def cli():
 @click.argument("paths", nargs=-1)
 def check_codestyle(fix: bool, paths: tuple[str]):
     click.echo("Running code formatters...")
-    result = run_command("black", *paths, "" if fix else "--check")
-    exit_code = result.returncode
-    click.echo(result)
-    # exit_code |= run_command("isort", *paths, "" if fix else "--check-only")
-    # exit_code |= run_command("ruff", "check", *paths, "--fix" if fix else "")
+    exit_code = run_command("black", *paths, "" if fix else "--check")
+    exit_code |= run_command("isort", *paths, "" if fix else "--check-only")
+    exit_code |= run_command("ruff", "check", *paths, "--fix" if fix else "")
 
     sys.exit(exit_code)
 
